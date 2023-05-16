@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-<title>Surfside Media</title>
+<title>DokanDari</title>
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,6 +14,9 @@
 <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/imgs/theme/favicon.ico')}}">
 <link rel="stylesheet" href="{{ asset('assets/css/main.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+<link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
+@vite(['resources/css/app.css', 'resources/js/app.js'])
 @livewireStyles
 </head>
 
@@ -340,22 +343,15 @@
                                     </li> --}}
                                     <li><a href="blog.html">Blog </a></li>
                                     <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="#">My Account<i class="fi-rs-angle-down"></i></a>
-                                        <ul class="sub-menu">
-                                            @auth
-                                            @if (Auth::user()->utype == 'ADM')
-                                                <li><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                                                <li><a href="#">Products</a></li>
-                                                <li><a href="#">Categories</a></li>
-                                                <li><a href="#">Coupons</a></li>
-                                                <li><a href="#">Orders</a></li>
-                                                <li><a href="#">Customers</a></li>
-                                            @else
-                                                <li><a href="{{route('user.dashboard')}}">Dashboard</a></li>
-                                            @endif
+                                    @auth
+                                        @if (Auth::user()->utype == 'USR')
+                                            <li><a href="#">My Account<i class="fi-rs-angle-down"></i></a>
+                                                <ul class="sub-menu">
+                                                    <li><a href="{{route('user.dashboard')}}">Dashboard</a></li>
+                                                </ul>
+                                            </li>
                                         @endif
-                                        </ul>
-                                    </li>
+                                    @endif
                                 </ul>
                             </nav>
                         </div>
