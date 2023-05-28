@@ -40,24 +40,9 @@ class AdminAddCategoryComponent extends Component
         return redirect()->route('admin.category');
     }
 
-    public function confirmDelete($category_id)
-    {
-        $this->category_id = $category_id;
-    }
 
-    public function deleteCategory()
-    {
-        $category = Category::find($this->category_id);
 
-        if ($category) {
-            $category->delete();
-        }
 
-        // Reset the category ID
-        $this->category_id = null;
-
-        // You can add any additional logic here, such as showing a success message, refreshing the category list, etc.
-    }
 
     public function render()
     {

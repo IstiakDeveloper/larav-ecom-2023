@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Admin\AdminAddCategoryComponent;
 use App\Http\Livewire\Admin\AdminCategoriesComponent;
@@ -59,7 +60,9 @@ Route::middleware(['auth', 'authadmin'])->group(function() {
     Route::get('admin/category', AdminCategoriesComponent::class)->name('admin.category');
     Route::get('admin/category/add', AdminAddCategoryComponent::class)->name('admin.category.add');
     Route::get('admin/category/edit/{category_id}', AdminCategoryEditComponent::class)->name('admin.category.edit');
-    Route::get('admin/category/delete/{category_id}', AdminCategoryEditComponent::class)->name('admin.category.delete');
+    Route::get('admin/category/delete/{category_id}', [AdminCategoriesComponent::class, 'deleteCategory'])->name('admin.category.delete');
+
+
 });
 
 require __DIR__.'/auth.php';
