@@ -16,8 +16,12 @@
                         <thead class="bg-orange-700">
                             <tr>
                                 <th class="px-4 py-2 text-left">#</th>
+                                <th class="px-4 py-2 text-left">Image</th>
                                 <th class="px-4 py-2 text-left">Name</th>
-                                <th class="px-4 py-2 text-left">Slug</th>
+                                <th class="px-4 py-2 text-left">Stock</th>
+                                <th class="px-4 py-2 text-left">Price</th>
+                                <th class="px-4 py-2 text-left">Category</th>
+                                <th class="px-4 py-2 text-left">Date</th>
                                 <th class="px-4 py-2 text-left">Actions</th>
                             </tr>
                         </thead>
@@ -25,21 +29,25 @@
                             @php
                                 $i = 1;
                             @endphp
-                            @foreach ($categories as $category)
+                            @foreach ($products as $product)
                                 <tr>
                                     <td class=" px-4 py-2">{{$i++}}</td>
-                                    <td class=" px-4 py-2">{{$category->name}}</td>
-                                    <td class=" px-4 py-2">{{$category->slug}}</td>
+                                    <td class=" px-4 py-2"><img src="{{asset('assets/imgs/products')}}/{{$product->image}}" width="60" alt="{{$product->name}}"></td>
+                                    <td class=" px-4 py-2">{{$product->name}}</td>
+                                    <td class=" px-4 py-2">{{$product->stock_status}}</td>
+                                    <td class=" px-4 py-2">{{$product->regular_price}}</td>
+                                    <td class=" px-4 py-2">{{$product->category->name}}</td>
+                                    <td class=" px-4 py-2">{{$product->created_at}}</td>
                                     <td class=" px-4 py-2">
-                                        <a href="{{route('admin.category.edit',['category_id'=>$category->id])}}">Edit</a>
-                                       <a href="#" onclick="deleteConfirmation({{$category->id}})" class="text-danger ml-2">Delete</a>
+                                        <a href="{{route('admin.product.edit',['product_id'=>$product->id])}}">Edit</a>
+                                       <a href="#" onclick="deleteConfirmation({{$product->id}})" class="text-danger ml-2">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
 
                     </table>
-                    {{$categories->links()}}
+                    {{$products->links()}}
                 </div>
             </div>
         </div>
@@ -53,9 +61,9 @@
             <div class="modal-body pb-30 pt-30">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h4 class="pb-3">Do you want to delete thsi record?</h4>
+                        <h4 class="pb-3">Do you want to delete this product?</h4>
                         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#deleteConfirmation">Cancel</button>
-                        <button type="button" class="btn btn-danger text-gray-900" onclick="deleteCategory()">Delete</button>
+                        <button type="button" class="btn btn-danger text-gray-900" onclick="deleteProduct()">Delete</button>
                     </div>
                 </div>
             </div>
@@ -68,13 +76,13 @@
     <script>
         function deleteConfirmation(id)
         {
-          @this.set('category_id', id);
+          @this.set('product_id', id);
           $('#deleteConfirmation').modal('show');
         }
 
-        function deleteCategory()
+        function deleteProduct()
         {
-             @this.call('deleteCategory')
+             @this.call('deleteProduct')
              $('#deleteConfirmation').modal('hide');
         }
     </script>
@@ -82,4 +90,5 @@
 
 
 @livewireScripts
+
 

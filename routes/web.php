@@ -3,9 +3,15 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Admin\AdminAddCategoryComponent;
+use App\Http\Livewire\Admin\AdminAddHomeSlideComponent;
+use App\Http\Livewire\Admin\AdminAddProductComponent;
 use App\Http\Livewire\Admin\AdminCategoriesComponent;
 use App\Http\Livewire\Admin\AdminCategoryEditComponent;
 use App\Http\Livewire\Admin\AdminDashboardComponent;
+use App\Http\Livewire\Admin\AdminEditHomeSlideComponent;
+use App\Http\Livewire\Admin\AdminHomeSliderComponent;
+use App\Http\Livewire\Admin\AdminProductEditComponent;
+use App\Http\Livewire\Admin\AdminProductsComponent;
 use App\Http\Livewire\CartComponent;
 use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\CheckoutComponent;
@@ -60,7 +66,15 @@ Route::middleware(['auth', 'authadmin'])->group(function() {
     Route::get('admin/category', AdminCategoriesComponent::class)->name('admin.category');
     Route::get('admin/category/add', AdminAddCategoryComponent::class)->name('admin.category.add');
     Route::get('admin/category/edit/{category_id}', AdminCategoryEditComponent::class)->name('admin.category.edit');
-    Route::get('admin/category/delete/{category_id}', [AdminCategoriesComponent::class, 'deleteCategory'])->name('admin.category.delete');
+
+    Route::get('admin/products', AdminProductsComponent::class)->name('admin.products');
+    Route::get('admin/products/add', AdminAddProductComponent::class)->name('admin.product.add');
+    Route::get('admin/product/edit/{product_id}', AdminProductEditComponent::class)->name('admin.product.edit');
+
+    Route::get('admin/slider', AdminHomeSliderComponent::class)->name('admin.slider');
+    Route::get('admin/slide/add', AdminAddHomeSlideComponent::class)->name('admin.slide.add');
+    Route::get('admin/slide/edit/{slide_id}', AdminEditHomeSlideComponent::class)->name('admin.slide.edit');
+
 
 
 });

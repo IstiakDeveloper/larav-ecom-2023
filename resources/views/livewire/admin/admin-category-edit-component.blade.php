@@ -1,6 +1,6 @@
 <div class="flex flex-col section px-10">
     <div class="page-title px-10 py-10">
-        <h1 class="text-4xl text-gray-700">Add new category</h1>
+        <h1 class="text-4xl text-gray-700">Edit category</h1>
     </div>
     <form wire:submit.prevent="updateCategory" class="max-w-md w-full px-4">
       <div class="mb-4">

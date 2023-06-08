@@ -6,10 +6,16 @@
       <div class="mb-4">
         <label for="name" class="block text-gray-700 font-bold mb-2">Name</label>
         <input name="name" type="text" placeholder="Enter your name" wire:model="name" wire:keyup="generateSlug" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-indigo-500">
+        @error('name')
+            <p class="text-danger">{{$message}}</p>
+        @enderror
       </div>
       <div class="mb-4">
         <label for="slug" class="block text-gray-700 font-bold mb-2">Slug</label>
         <input id="slug" name="slug" type="text" placeholder="Enter a slug" wire:model="slug" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-indigo-500">
+        @error('slug')
+            <p class="text-danger">{{$message}}</p>
+        @enderror
       </div>
       <div class="flex ">
         <button type="submit" class="bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none">Submit</button>

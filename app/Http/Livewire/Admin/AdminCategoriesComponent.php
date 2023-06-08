@@ -9,23 +9,16 @@ use Livewire\WithPagination;
 class AdminCategoriesComponent extends Component
 {
 
+    public $category_id;
     use WithPagination;
 
-    public $categoryId;
-    public function deleteCategory($categoryId)
+    public function deleteCategory()
     {
-        $category = Category::find($categoryId);
-        if ($category) {
-            $category->delete();
-            flash()->addSuccess('success', 'Category deleted successfully.');
-        }
-    }
-     public function categoryDelete($id)
-    {
-        $category = Category::findOrFail($id);
+        $category = Category::find($this->category_id);
         $category->delete();
+        flash()->addSuccess('Category has been deleted successfully!');
+        return redirect()->route('admin.category');
 
-        flash()->addSuccess('Category deleted successfully!');
     }
 
     public function render()
